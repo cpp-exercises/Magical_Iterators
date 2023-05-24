@@ -33,12 +33,13 @@ operations:
 
 For expample: say our container contains the numbers 1,2,4,5,14 the iterators will return the elements in the following order:
 
-• Ascending: 1,2,4,5,14
+• Ascending: 1,2,4,5,14   
+operator> should return true on 5>2, 14>1
 
 • prime: 2,5
-
+operator> should return true on 5>2
 • cross: 1,14,2,5,4  (one from the start then one from the end)
-
+operator> should return true on 5>14, 2>1, 4>14
 
 **All iterators should work in O(1) in both memory and time complexity.**
 Iterators should **NOT** be detached from the main container. If one add's an element to a container after an iterator is created the iterator should know the element return it should its turn will come. 
