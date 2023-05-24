@@ -1,0 +1,42 @@
+#!/bin/bash
+
+source grade_utils
+TIMEOUT=20
+run_in_folder_if_exists "$1"
+
+printf "\n\n### Cleaning old files ###\n"
+make -f Makefile clean
+
+total=0
+i=0
+
+let "i=i+1"
+printf "\n\n### Check $i: our demo program should compile with your class\n"
+grade_command make -j8 -f Makefile demo 
+printf "### Score $i: $grade\n"
+total=$((total + grade))
+
+let "i=i+1"
+printf "\n\n### Check $i: our demo program should run without errors\n"
+grade_command ./demo
+printf "### Score $i: $grade\n"
+total=$((total + grade))
+
+let "i=i+1"
+printf "\n\n### Check $i: your test should compile \n"
+grade_command make -j8 -f Makefile test 
+printf "### Score $i: $grade\n"
+total=$((total + grade))
+
+let "i=i+1"
+printf "\n\n### Check $i: you should write some new tests\n"
+grade_command ./test
+printf "### Score $i: $grade\n"
+total=$((total + grade))
+
+total=$((total / i))
+printf "\n\nGrade: $total\n\n"
+
+make -f Makefile --silent clean
+
+exit $total
