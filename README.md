@@ -21,7 +21,7 @@ operations:
 
 •	Inequality comparison (operator!=)
 
-•	GT, LT comparison (operator>, operatorn<) these operators only valid for iterators of the same type and should compair the location of the iterator in its order and not the element inside. Example bellow.
+•	GT, LT comparison (operator>, operatorn<) all comparison operators only valid for iterators of the same type of order and should compair the location of the iterator in the container and not the element inside. Example bellow. Using operators on iterators of differant type or differant containers should throw an examtion. 
  
 •	Dereference operator (operator*)
 
