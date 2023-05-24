@@ -22,8 +22,8 @@ int main() {
 
     // Use DescendingIterator to display elements in descending order
     std::cout << "Elements in cross order:\n";
-    SideCrossIterator descIter(container);
-    for (auto it = descIter.begin(); it != descIter.end(); ++it) {
+    SideCrossIterator crossIter(container);
+    for (auto it = crossIter.begin(); it != crossIter.end(); ++it) {
         std::cout << *it << ' ';  // 2 25 3 17 9
     }
     std::cout << std::endl;
