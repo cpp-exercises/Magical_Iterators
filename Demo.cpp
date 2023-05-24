@@ -1,5 +1,5 @@
 #include <iostream>
-#include "MagicalContainer.h"
+#include "sources/MagicalContainer.h"
 int main() {
     // Create a MagicalContainer and add some elements
     MagicalContainer container;
@@ -16,15 +16,15 @@ int main() {
     std::cout << "Elements in ascending order:\n";
     AscendingIterator ascIter(container);
     for (auto it = ascIter.begin(); it != ascIter.end(); ++it) {
-        std::cout << *it << ' ';
+        std::cout << *it << ' ';   // 2 3 9 17 25
     }
     std::cout << std::endl;
 
     // Use DescendingIterator to display elements in descending order
-    std::cout << "Elements in descending order:\n";
-    DescendingIterator descIter(container);
+    std::cout << "Elements in cross order:\n";
+    SideCrossIterator descIter(container);
     for (auto it = descIter.begin(); it != descIter.end(); ++it) {
-        std::cout << *it << ' ';
+        std::cout << *it << ' ';  // 2 25 3 17 9
     }
     std::cout << std::endl;
 
@@ -32,7 +32,7 @@ int main() {
     std::cout << "Prime numbers:\n";
     PrimeIterator primeIter(container);
     for (auto it = primeIter.begin(); it != primeIter.end(); ++it) {
-        std::cout << *it << ' ';
+        std::cout << *it << ' ';  // 2 3 17 
     }
     std::cout << std::endl;
 
