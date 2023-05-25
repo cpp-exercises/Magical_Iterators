@@ -1,0 +1,14 @@
+//
+// Created by Renana on 5/25/23.
+//
+
+#ifndef MAGICAL_ITERATORS_MAGICALCONTAINER_H
+#define MAGICAL_ITERATORS_MAGICALCONTAINER_H
+
+
+class MagicalContainer {
+
+};
+
+
+#endif //MAGICAL_ITERATORS_MAGICALCONTAINER_H

@@ -1,0 +1,14 @@
+//
+// Created by renana on 5/25/23.
+//
+
+#ifndef MAGICAL_ITERATORS_ASCENDINGITERATOR_H
+#define MAGICAL_ITERATORS_ASCENDINGITERATOR_H
+
+
+class AscendingIterator {
+
+};
+
+
+#endif //MAGICAL_ITERATORS_ASCENDINGITERATOR_H
