@@ -1,5 +1,6 @@
 #include <iostream>
-#include "sources/MagicalContainer.h"
+#include "sources/MagicalContainer.hpp"
+using namespace ariel;
 int main() {
     // Create a MagicalContainer and add some elements
     MagicalContainer container;
@@ -14,7 +15,7 @@ int main() {
 
     // Use AscendingIterator to display elements in ascending order
     std::cout << "Elements in ascending order:\n";
-    AscendingIterator ascIter(container);
+    MagicalContainer::AscendingIterator ascIter(container);
     for (auto it = ascIter.begin(); it != ascIter.end(); ++it) {
         std::cout << *it << ' ';   // 2 3 9 17 25
     }
@@ -22,7 +23,7 @@ int main() {
 
     // Use DescendingIterator to display elements in descending order
     std::cout << "Elements in cross order:\n";
-    SideCrossIterator crossIter(container);
+    MagicalContainer::SideCrossIterator crossIter(container);
     for (auto it = crossIter.begin(); it != crossIter.end(); ++it) {
         std::cout << *it << ' ';  // 2 25 3 17 9
     }
@@ -30,7 +31,7 @@ int main() {
 
     // Use PrimeIterator to display prime numbers only
     std::cout << "Prime numbers:\n";
-    PrimeIterator primeIter(container);
+    MagicalContainer::PrimeIterator primeIter(container);
     for (auto it = primeIter.begin(); it != primeIter.end(); ++it) {
         std::cout << *it << ' ';  // 2 3 17 
     }
