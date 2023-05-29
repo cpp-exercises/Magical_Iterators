@@ -1,6 +1,6 @@
 #include <iostream>
 #include "sources/MagicalContainer.hpp"
-
+using namespace ariel;
 int main() {
     // Create a MagicalContainer and add some elements
     MagicalContainer container;
@@ -33,7 +33,7 @@ int main() {
     std::cout << "Prime numbers:\n";
     MagicalContainer::PrimeIterator primeIter(container);
     for (auto it = primeIter.begin(); it != primeIter.end(); ++it) {
-        std::cout << *it << ' ';  // 2 3 17 
+        std::cout << *it << ' ';  // 2 3 17
     }
     std::cout << std::endl;
 
