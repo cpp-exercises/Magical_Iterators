@@ -40,17 +40,17 @@ using namespace ariel;
 
 
     // AscendingIterator Implementation:
-
     AscendingIterator::AscendingIterator(const MagicalContainer& my_container, int idx)
             : container(my_container), index(idx) {}
 
     AscendingIterator::AscendingIterator()
-            : container(MagicalContainer()), index(0) {}
+        : container(MagicalContainer()), index(0) {}
 
     AscendingIterator::AscendingIterator(const AscendingIterator& other)
-            : container(other.container), index(other.index) {}
+        : container(other.container), index(other.index) {}
 
-    AscendingIterator::~AscendingIterator() {}
+
+AscendingIterator::~AscendingIterator() {}
 
     AscendingIterator& AscendingIterator::operator=(const AscendingIterator& other) {
         return *this;
@@ -80,24 +80,24 @@ using namespace ariel;
         return false;
     }
 
-    AscendingIterator* AscendingIterator::begin() {
+    AscendingIterator AscendingIterator::begin() const{
         return nullptr;
     }
 
-    AscendingIterator* AscendingIterator::end() {
+    AscendingIterator AscendingIterator::end() const{
         return nullptr;
     }
 
     // SideCrossIterator Implementation
 
-    SideCrossIterator::SideCrossIterator(const MagicalContainer& cont, int frontIdx, int backIdx, bool moveF)
-            : container(cont), frontIndex(frontIdx), backIndex(backIdx), moveFront(moveF) {}
+    SideCrossIterator::SideCrossIterator(const MagicalContainer &cont, int index)
+            : container(cont), index(index){}
 
     SideCrossIterator::SideCrossIterator()
-            : container(MagicalContainer()), frontIndex(0), backIndex(0), moveFront(true) {}
+            : container(MagicalContainer()), index(0) {}
 
-    SideCrossIterator::SideCrossIterator(const SideCrossIterator& other)
-            : container(other.container), frontIndex(other.frontIndex), backIndex(other.backIndex), moveFront(other.moveFront) {}
+    SideCrossIterator::SideCrossIterator(const SideCrossIterator &other)
+            : container(other.container), index(other.index) {}
 
     SideCrossIterator::~SideCrossIterator() {}
 
@@ -129,23 +129,23 @@ using namespace ariel;
         return false;
     }
 
-    SideCrossIterator* SideCrossIterator::begin() {
+    SideCrossIterator SideCrossIterator::begin() const{
         return nullptr;
     }
 
-    SideCrossIterator* SideCrossIterator::end() {
+    SideCrossIterator SideCrossIterator::end() const{
         return nullptr;
     }
 
     // PrimeIterator Implementation
 
-    PrimeIterator::PrimeIterator(const MagicalContainer& cont, int idx)
+    PrimeIterator::PrimeIterator(const MagicalContainer &cont, int idx)
             : container(cont), currentIndex(idx) {}
 
     PrimeIterator::PrimeIterator()
             : container(MagicalContainer()), currentIndex(0) {}
 
-    PrimeIterator::PrimeIterator(const PrimeIterator& other)
+    PrimeIterator::PrimeIterator(const PrimeIterator &other)
             : container(other.container), currentIndex(other.currentIndex) {}
 
     PrimeIterator::~PrimeIterator() {}
@@ -178,11 +178,11 @@ using namespace ariel;
         return false;
     }
 
-    PrimeIterator* PrimeIterator::begin() {
+    PrimeIterator PrimeIterator::begin() const{
         return nullptr;
     }
 
-    PrimeIterator* PrimeIterator::end() {
+    PrimeIterator PrimeIterator::end() const{
         return nullptr;
     }
 
