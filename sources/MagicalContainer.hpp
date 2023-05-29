@@ -1,98 +1,141 @@
-//
-// Created by Renana on 5/25/23.
-//
+#include "MagicalContainer.hpp"
 
-#ifndef MAGICAL_ITERATORS_MAGICALCONTAINER_H
-#define MAGICAL_ITERATORS_MAGICALCONTAINER_H
+using namespace std;
+using namespace ariel;
 
-#include <iostream>
-#include <vector>
-#include <cmath>
-/*Create a user-defined container class named "MagicalContainer" that can store integers representing mystical elements.
- * Implement necessary methods for adding elements, removing elements, and retrieving the size of the container.
- * You can use a dynamic array or any other suitable data structure for internal storage.*/
-class MagicalContainer {
-private:
-    std::vector<int> elements;
-public:
-    MagicalContainer();
-    ~MagicalContainer();
-    void addElement(int element);
-    void removeElement(int element);
-    int getSize() const;
-};
+// MagicalContainer Implementation:
 
-class AscendingIterator {
-private:
-    const MagicalContainer& container;
-    int index;
+MagicalContainer::MagicalContainer() {}
 
-public:
-    AscendingIterator(const MagicalContainer& my_container, int idx);
-    AscendingIterator(); //Default constructor
-    AscendingIterator(const AscendingIterator& other); //Copy constructor
-    ~AscendingIterator(); //Destructor
+MagicalContainer::~MagicalContainer() {}
 
-    AscendingIterator& operator=(const AscendingIterator& other); // Assignment operator
-    bool operator==(const AscendingIterator& other) const;
-    bool operator!=(const AscendingIterator& other) const;
-    int operator*() const;
-    AscendingIterator& operator++();
-    bool operator>(const AscendingIterator& other) const;
-    bool operator<(const AscendingIterator& other) const;
+void MagicalContainer::addElement(int element) {
+    elements.push_back(element);
+}
 
-    AscendingIterator *begin(); //TODO: check if like this
-    AscendingIterator *end();
-};
+void MagicalContainer::removeElement(int element) {
+    for (auto my_element = elements.begin(); my_element != elements.end(); ++my_element) {
+        if (*my_element == element) {
+            elements.erase(my_element);
+            break;
+        }
+    }
+}
 
-class SideCrossIterator {
-private:
-    const MagicalContainer& container;
-    int frontIndex;
-    int backIndex;
-    bool moveFront;
+int MagicalContainer::size() const {
+    return elements.size();
+}
 
-public:
-    SideCrossIterator(const MagicalContainer& cont, int frontIdx, int backIdx, bool moveF);
-    SideCrossIterator();
-    SideCrossIterator(const SideCrossIterator& other);
-    ~SideCrossIterator();
+vector<int> &MagicalContainer::getElements() {
+    return this->elements;
+}
 
-    SideCrossIterator& operator=(const SideCrossIterator& other);
-    bool operator==(const SideCrossIterator& other) const;
-    bool operator!=(const SideCrossIterator& other) const;
-    int operator*() const;
-    SideCrossIterator& operator++();
-    bool operator>(const SideCrossIterator& other) const;
-    bool operator<(const SideCrossIterator& other) const;
+void MagicalContainer::setElements(vector<int> elements) {
+    this->elements = elements;
+}
 
-    SideCrossIterator *begin();
-    SideCrossIterator *end();
-};
 
-class PrimeIterator {
-private:
-    const MagicalContainer& container;
-    int currentIndex;
+// AscendingIterator Implementation:
 
-    bool isPrime(int num) const;
+AscendingIterator::AscendingIterator(const MagicalContainer &my_container, int idx)
+        : container(my_container), index(idx) {}
 
-public:
-    PrimeIterator(const MagicalContainer& cont, int idx);
-    PrimeIterator();
-    PrimeIterator(const PrimeIterator& other);
-    ~PrimeIterator();
+AscendingIterator::AscendingIterator()
+        : container(MagicalContainer()), index(0) {}
 
-    PrimeIterator& operator=(const PrimeIterator& other);
-    bool operator==(const PrimeIterator& other) const;
-    bool operator!=(const PrimeIterator& other) const;
-    int operator*() const;
-    PrimeIterator& operator++();
-    bool operator>(const PrimeIterator& other) const;
-    bool operator<(const PrimeIterator& other) const;
+AscendingIterator::AscendingIterator(const AscendingIterator &other)
+        : container(other.container), index(other.index) {}
 
-    PrimeIterator *begin();
-    PrimeIterator *end();
-};
+AscendingIterator::~AscendingIterator() {}
 
-#endif //MAGICAL_ITERATORS_MAGICALCONTAINER_H
+AscendingIterator &AscendingIterator::operator=(const AscendingIterator &other) {
+    return *this;
+}
+
+bool AscendingIterator::operator==(const AscendingIterator &other) const {
+    return false;
+}
+
+bool AscendingIterator::operator!=(const AscendingIterator &other) const {
+    return false;
+}
+
+int AscendingIterator::operator*() const {
+    return container.getElements()[index];
+}
+
+AscendingIterator &AscendingIterator::operator++() {
+    ++index;
+    return *this;
+}
+
+bool AscendingIterator::operator>(const AscendingIterator &other) const {
+    return false;
+}
+
+bool AscendingIterator::operator<(const AscendingIterator &other) const {
+    return false;
+}
+
+AscendingIterator MagicalContainer::AscendingIterator::begin() {
+    return AscendingIterator(container, 0);
+}
+
+AscendingIterator MagicalContainer::AscendingIterator::end() {
+    return AscendingIterator(container, container.size());
+}
+
+
+// SideCrossIterator Implementation:
+
+SideCrossIterator::SideCrossIterator(const MagicalContainer &cont, int frontIdx, int backIdx, bool moveF)
+        : container(cont), frontIndex(frontIdx), backIndex(backIdx), moveFront(moveF) {}
+
+SideCrossIterator::SideCrossIterator()
+        : container(MagicalContainer()), frontIndex(0), backIndex(0), moveFront(true) {}
+
+SideCrossIterator::SideCrossIterator(const SideCrossIterator &other)
+        : container(other.container), frontIndex(other.frontIndex), backIndex(other.backIndex), moveFront(other.moveFront) {}
+
+SideCrossIterator::~SideCrossIterator() {}
+
+SideCrossIterator &SideCrossIterator::operator=(const SideCrossIterator &other) {
+    return *this;
+}
+
+bool SideCrossIterator::operator==(const SideCrossIterator &other) const {
+    return false;
+}
+
+bool SideCrossIterator::operator!=(const SideCrossIterator &other) const {
+    return false;
+}
+
+int SideCrossIterator::operator*() const {
+    return container.getElements()[moveFront ? frontIndex : backIndex];
+}
+
+SideCrossIterator &SideCrossIterator::operator++() {
+    if (moveFront) {
+        ++frontIndex;
+    } else {
+        --backIndex;
+    }
+    return *this;
+}
+
+bool SideCrossIterator::operator>(const SideCrossIterator &other) const {
+    return false;
+}
+
+bool SideCrossIterator::operator<(const SideCrossIterator &other) const {
+    return false;
+}
+
+SideCrossIterator MagicalContainer::SideCrossIterator::begin() {
+    return SideCrossIterator(container, 0, container.size() - 1, true);
+}
+
+SideCrossIterator MagicalContainer::SideCrossIterator::end() {
+    return SideCrossIterator(container, 0, container.size() - 1, false);
+}

@@ -1,22 +1,18 @@
-//
-// Created by Renana on 5/25/23.
-//
-
 #include "MagicalContainer.hpp"
-using namespace std
 
-namespace ariel{
+using namespace std;
+using namespace ariel;
 
     // MagicalContainer Implementation:
 
-    MagicalContainer::MagicalContainer(){}
-    MagicalContainer::~MagicalContainer(){}
+    MagicalContainer::MagicalContainer() {}
+    MagicalContainer::~MagicalContainer() {}
 
-    void MagicalContainer::addElement(int element){
+    void MagicalContainer::addElement(int element) {
         elements.push_back(element);
     }
 
-    void MagicalContainer::removeElement(int element){
+    void MagicalContainer::removeElement(int element) {
         for (auto my_element = elements.begin(); my_element != elements.end(); ++my_element) {
             if (*my_element == element) {
                 elements.erase(my_element);
@@ -25,9 +21,23 @@ namespace ariel{
         }
     }
 
-    int MagicalContainer::getSize() const{
+    int MagicalContainer::size() const {
         return elements.size();
     }
+
+    std::vector<int>& MagicalContainer::getElements() {
+        return this->elements;
+    }
+
+    void MagicalContainer::setElements(std::vector<int> elements) {
+        this->elements = elements;
+    }
+
+    std::ostream& operator<<(std::ostream& os, const AscendingIterator& it) {
+        os << *it; // Output the value pointed by the iterator
+        return os;
+    }
+
 
     // AscendingIterator Implementation:
 
@@ -43,21 +53,14 @@ namespace ariel{
     AscendingIterator::~AscendingIterator() {}
 
     AscendingIterator& AscendingIterator::operator=(const AscendingIterator& other) {
-//        if (this != &other) {
-//            container = other.container;
-//            index = other.index;
-//        }
-//        return *this;
-            return *this;
+        return *this;
     }
 
     bool AscendingIterator::operator==(const AscendingIterator& other) const {
-//        return (&container == &other.container) && (index == other.index);
         return false;
     }
 
     bool AscendingIterator::operator!=(const AscendingIterator& other) const {
-//        return !(*this == other);
         return false;
     }
 
@@ -66,25 +69,23 @@ namespace ariel{
     }
 
     AscendingIterator& AscendingIterator::operator++() {
-//        ++index;
-//        return *this;
-            retuen  *this;
+        return *this;
     }
 
     bool AscendingIterator::operator>(const AscendingIterator& other) const {
-//        return index > other.index;
-            return false;
+        return false;
     }
 
     bool AscendingIterator::operator<(const AscendingIterator& other) const {
-//        return index < other.index;
         return false;
     }
 
     AscendingIterator* AscendingIterator::begin() {
+        return nullptr;
     }
 
     AscendingIterator* AscendingIterator::end() {
+        return nullptr;
     }
 
     // SideCrossIterator Implementation
@@ -101,30 +102,19 @@ namespace ariel{
     SideCrossIterator::~SideCrossIterator() {}
 
     SideCrossIterator& SideCrossIterator::operator=(const SideCrossIterator& other) {
-//        if (this != &other) {
-//            container = other.container;
-//            frontIndex = other.frontIndex;
-//            backIndex = other.backIndex;
-//            moveFront = other.moveFront;
-//        }
-//        return *this;
-
         return *this;
     }
 
     bool SideCrossIterator::operator==(const SideCrossIterator& other) const {
-//        return (&container == &other.container) && (frontIndex == other.frontIndex) && (backIndex == other.backIndex) && (moveFront == other.moveFront);
         return false;
     }
 
     bool SideCrossIterator::operator!=(const SideCrossIterator& other) const {
-//        return !(*this == other);
         return false;
-
     }
 
     int SideCrossIterator::operator*() const {
-
+        return 0;
     }
 
     SideCrossIterator& SideCrossIterator::operator++() {
@@ -132,9 +122,7 @@ namespace ariel{
     }
 
     bool SideCrossIterator::operator>(const SideCrossIterator& other) const {
-//        return frontIndex > other.frontIndex;
         return false;
-
     }
 
     bool SideCrossIterator::operator<(const SideCrossIterator& other) const {
@@ -142,9 +130,11 @@ namespace ariel{
     }
 
     SideCrossIterator* SideCrossIterator::begin() {
+        return nullptr;
     }
 
     SideCrossIterator* SideCrossIterator::end() {
+        return nullptr;
     }
 
     // PrimeIterator Implementation
@@ -161,27 +151,18 @@ namespace ariel{
     PrimeIterator::~PrimeIterator() {}
 
     PrimeIterator& PrimeIterator::operator=(const PrimeIterator& other) {
-//        if (this != &other) {
-//            container = other.container;
-//            currentIndex = other.currentIndex;
-//        }
-//        return *this;
-                return *this;
+        return *this;
     }
 
     bool PrimeIterator::operator==(const PrimeIterator& other) const {
-//        return (&container == &other.container) && (currentIndex == other.currentIndex);
         return false;
     }
 
     bool PrimeIterator::operator!=(const PrimeIterator& other) const {
-//        return !(*this == other);
         return false;
-
     }
 
     int PrimeIterator::operator*() const {
-//        return container.elements[currentIndex];
         return false;
     }
 
@@ -190,19 +171,19 @@ namespace ariel{
     }
 
     bool PrimeIterator::operator>(const PrimeIterator& other) const {
-//        return currentIndex > other.currentIndex;
         return false;
     }
 
     bool PrimeIterator::operator<(const PrimeIterator& other) const {
-//        return currentIndex < other.currentIndex;
         return false;
     }
 
     PrimeIterator* PrimeIterator::begin() {
+        return nullptr;
     }
 
     PrimeIterator* PrimeIterator::end() {
+        return nullptr;
     }
 
     bool PrimeIterator::isPrime(int num) const {
@@ -217,4 +198,3 @@ namespace ariel{
         return true;
     }
 
-}// namespace ariel
