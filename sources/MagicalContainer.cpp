@@ -25,9 +25,10 @@ void MagicalContainer::removeElement(int element) {
     auto it = std::find(elements.begin(), elements.end(), element);
     if (it != elements.end()) {
         elements.erase(it);
-    } else {
-        throw std::invalid_argument("Element not found in the container.");
     }
+//    else {
+//        throw std::invalid_argument("Element not found in the container.");
+//    }
 }
 
 int MagicalContainer::size() const {
