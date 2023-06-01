@@ -150,24 +150,24 @@ TEST_SUITE("Adding and Removing Elements Simultaneously") {
         CHECK(container.size() == 1);
     }
 }
-TEST_SUITE("Test AscendingIterator class - begin") {
 
+TEST_SUITE("Test AscendingIterator class ") {
 
-    TEST_CASE("Test dereference operator") {
+    TEST_CASE("Test * operator returns the correct element") {
         // Setup
         MagicalContainer container;
-        container.addElement(5);
-        container.addElement(2);
-        container.addElement(8);
+        container.addElement(4);
+        container.addElement(1);
+        container.addElement(9);
         MagicalContainer::AscendingIterator ascIter(container);
         auto first_asc_iterator = ascIter.begin();
         auto second_asc_iterator = ascIter.begin();
         // Assertion
-        CHECK_EQ(*first_asc_iterator, 2);
-        CHECK_EQ(*second_asc_iterator, 2);
+        CHECK_EQ(*first_asc_iterator, 1);
+        CHECK_EQ(*second_asc_iterator, 1);
     }
 
-    TEST_CASE("Test pre-increment operator and comparison operators") {
+    TEST_CASE("Test ++ operator") {
         // Setup
         MagicalContainer container;
         container.addElement(5);
@@ -203,5 +203,115 @@ TEST_SUITE("Test AscendingIterator class - begin") {
         // Assertions
         CHECK_EQ(*first_asc_iterator, 8);
         CHECK_EQ(first_asc_iterator, second_asc_iterator);
+    }
+}
+
+TEST_SUITE("Test SideCrossIterator class") {
+
+    TEST_CASE("Test * operator returns the correct element") {
+        // Setup
+        MagicalContainer container;
+        container.addElement(4);
+        container.addElement(1);
+        container.addElement(9);
+        MagicalContainer::SideCrossIterator sideCrossIter(container);
+        auto first_sideCross_iterator = sideCrossIter.begin();
+        auto second_sideCross_iterator = sideCrossIter.begin();
+        // Assertion
+        CHECK_EQ(*first_sideCross_iterator, 1);
+        CHECK_EQ(*second_sideCross_iterator, 1);
+    }
+
+    TEST_CASE("Test ++ operator") {
+        // Setup
+        MagicalContainer container;
+        container.addElement(5);
+        container.addElement(2);
+        container.addElement(8);
+        MagicalContainer::SideCrossIterator sideCrossIter(container);
+        auto first_sideCross_iterator = sideCrossIter.begin();
+        auto second_sideCross_iterator = sideCrossIter.begin();
+        // Action
+        ++first_sideCross_iterator;
+
+        // Assertions
+        CHECK_EQ(*first_sideCross_iterator, 5);
+        CHECK_NE(first_sideCross_iterator, second_sideCross_iterator);
+        CHECK_FALSE(first_sideCross_iterator == second_sideCross_iterator);
+
+        // Action
+        ++second_sideCross_iterator;
+
+        // Assertions
+        CHECK_EQ(*second_sideCross_iterator, 5);
+        CHECK_EQ(first_sideCross_iterator, second_sideCross_iterator);
+
+        // Action
+        ++second_sideCross_iterator;
+
+        // Assertions
+        CHECK_EQ(*second_sideCross_iterator, 8);
+
+        // Action
+        ++first_sideCross_iterator;
+
+        // Assertions
+        CHECK_EQ(*first_sideCross_iterator, 8);
+        CHECK_EQ(first_sideCross_iterator, second_sideCross_iterator);
+    }
+}
+
+TEST_SUITE("Test PrimeIterator class") {
+
+    TEST_CASE("Test * operator returns the correct element") {
+        // Setup
+        MagicalContainer container;
+        container.addElement(4);
+        container.addElement(1);
+        container.addElement(9);
+        MagicalContainer::PrimeIterator primeIter(container);
+        auto first_prime_iterator = primeIter.begin();
+        auto second_prime_iterator = primeIter.begin();
+        // Assertion
+        CHECK_EQ(*first_prime_iterator, 2);
+        CHECK_EQ(*second_prime_iterator, 2);
+    }
+
+    TEST_CASE("Test ++ operator") {
+        // Setup
+        MagicalContainer container;
+        container.addElement(5);
+        container.addElement(2);
+        container.addElement(8);
+        MagicalContainer::PrimeIterator primeIter(container);
+        auto first_prime_iterator = primeIter.begin();
+        auto second_prime_iterator = primeIter.begin();
+        // Action
+        ++first_prime_iterator;
+
+        // Assertions
+        CHECK_EQ(*first_prime_iterator, 5);
+        CHECK_NE(first_prime_iterator, second_prime_iterator);
+        CHECK_FALSE(first_prime_iterator == second_prime_iterator);
+
+        // Action
+        ++second_prime_iterator;
+
+        // Assertions
+        CHECK_EQ(*second_prime_iterator, 5);
+        CHECK_EQ(first_prime_iterator, second_prime_iterator);
+
+        // Action
+        ++second_prime_iterator;
+
+        // Assertions
+        CHECK_EQ(*second_prime_iterator, 8);
+
+        // Action
+        ++first_prime_iterator;
+
+        // Assertions
+        CHECK_EQ(*first_prime_iterator, 8);
+        CHECK_EQ(first_prime_iterator, second_prime_iterator);
     }
 }
