@@ -328,7 +328,88 @@ TEST_SUITE("PrimeIterator move over prime numbers only") {
         container.addElement(4);
 
         MagicalContainer::PrimeIterator prime_it(container);
-        CHECK_EQ(it, prime_it.end());
+        CHECK_EQ(prime_it, prime_it.end());
         CHECK_THROWS_AS(++prime_it, runtime_error);
+    }
+}
+
+TEST_SUITE("PrimeIterator") {
+
+    TEST_CASE("Test first prime element") {
+        // Setup
+        MagicalContainer container;
+        container.addElement(3);
+        container.addElement(7);
+        container.addElement(9);
+        container.addElement(23);
+        container.addElement(11);
+        MagicalContainer::PrimeIterator primeIter(container);
+        // Action
+        auto begin = primeIter.begin();
+
+        // Assertion
+        CHECK_EQ(*begin, 3);
+    }
+
+    TEST_CASE("Test second prime element") {
+        // Setup
+        MagicalContainer container;
+        container.addElement(3);
+        container.addElement(7);
+        container.addElement(9);
+        container.addElement(23);
+        container.addElement(11);
+        MagicalContainer::PrimeIterator primeIter(container);
+        // Action
+        auto begin = primeIter.begin();
+        ++begin;
+
+        // Assertion
+        CHECK_EQ(*begin, 7);
+    }
+
+    TEST_CASE("go over the prime numbers") {
+        // Setup
+        MagicalContainer container;
+        container.addElement(3);
+        container.addElement(7);
+        container.addElement(9);
+        container.addElement(23);
+        container.addElement(11);
+        MagicalContainer::PrimeIterator primeIter(container);
+        // Action
+        auto begin = primeIter.begin();
+        ++begin;
+        ++begin;
+
+        // Assertion
+        CHECK_EQ(*begin, 11);
+    }
+}
+
+TEST_SUITE(" AscendingIterator") {
+
+    TEST_CASE("Iterating in ascending order") {
+        // Setup
+        MagicalContainer container;
+        container.addElement(3);
+        container.addElement(6);
+        container.addElement(9);
+        container.addElement(12);
+        container.addElement(15);
+        // Action
+        MagicalContainer::AscendingIterator it(container);
+        // Assertions
+        CHECK_EQ(*it, 3);
+        ++it;
+        CHECK_EQ(*it, 6);
+        ++it;
+        CHECK_EQ(*it, 9);
+        ++it;
+        CHECK_EQ(*it, 12);
+        ++it;
+        CHECK_EQ(*it, 15);
+        ++it;
+        CHECK(it == it.end());
     }
 }
