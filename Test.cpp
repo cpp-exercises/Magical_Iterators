@@ -315,3 +315,20 @@ TEST_SUITE("Test PrimeIterator class") {
         CHECK_EQ(first_prime_iterator, second_prime_iterator);
     }
 }
+
+TEST_SUITE("PrimeIterator move over prime numbers only") {
+
+    TEST_CASE("Iterating over elements") {
+        MagicalContainer container;
+        container.addElement(100);
+        container.addElement(200);
+        container.addElement(36);
+        container.addElement(99);
+        container.addElement(102);
+        container.addElement(4);
+
+        MagicalContainer::PrimeIterator prime_it(container);
+        CHECK_EQ(it, prime_it.end());
+        CHECK_THROWS_AS(++prime_it, runtime_error);
+    }
+}
