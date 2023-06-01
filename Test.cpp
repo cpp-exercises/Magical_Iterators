@@ -131,3 +131,77 @@ TEST_SUITE("MagicalContainer SideCrossIterator") {
         }
     }
 }
+
+TEST_SUITE("Adding and Removing Elements Simultaneously") {
+    MagicalContainer container;
+
+    TEST_CASE("Adding and removing single element") {
+        container.addElement(10);
+        container.removeElement(10);
+        CHECK(container.size() == 0);
+    }
+
+    TEST_CASE("Adding and removing multiple elements") {
+        container.addElement(10);
+        container.addElement(20);
+        container.removeElement(10);
+        container.addElement(30);
+        container.removeElement(20);
+        CHECK(container.size() == 1);
+    }
+}
+TEST_SUITE("Test AscendingIterator class - begin") {
+
+
+    TEST_CASE("Test dereference operator") {
+        // Setup
+        MagicalContainer container;
+        container.addElement(5);
+        container.addElement(2);
+        container.addElement(8);
+        MagicalContainer::AscendingIterator ascIter(container);
+        auto first_asc_iterator = ascIter.begin();
+        auto second_asc_iterator = ascIter.begin();
+        // Assertion
+        CHECK_EQ(*first_asc_iterator, 2);
+        CHECK_EQ(*second_asc_iterator, 2);
+    }
+
+    TEST_CASE("Test pre-increment operator and comparison operators") {
+        // Setup
+        MagicalContainer container;
+        container.addElement(5);
+        container.addElement(2);
+        container.addElement(8);
+        MagicalContainer::AscendingIterator ascIter(container);
+        auto first_asc_iterator = ascIter.begin();
+        auto second_asc_iterator = ascIter.begin();
+        // Action
+        ++first_asc_iterator;
+
+        // Assertions
+        CHECK_EQ(*first_asc_iterator, 5);
+        CHECK_NE(first_asc_iterator, second_asc_iterator);
+        CHECK_FALSE(first_asc_iterator == second_asc_iterator);
+
+        // Action
+        ++second_asc_iterator;
+
+        // Assertions
+        CHECK_EQ(*second_asc_iterator, 5);
+        CHECK_EQ(first_asc_iterator, second_asc_iterator);
+
+        // Action
+        ++second_asc_iterator;
+
+        // Assertions
+        CHECK_EQ(*second_asc_iterator, 8);
+
+        // Action
+        ++first_asc_iterator;
+
+        // Assertions
+        CHECK_EQ(*first_asc_iterator, 8);
+        CHECK_EQ(first_asc_iterator, second_asc_iterator);
+    }
+}
