@@ -101,7 +101,7 @@ namespace ariel{
 
             PrimeIterator(MagicalContainer& container);
             PrimeIterator(PrimeIterator &&other) noexcept;
-            int& operator*() const;
+            int operator*() const;
             PrimeIterator& operator++();
             bool operator==(const PrimeIterator& other_iterator) const;
             bool operator!=(const PrimeIterator& other_iterator) const;
