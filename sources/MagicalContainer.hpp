@@ -32,6 +32,7 @@ namespace ariel{
         public:
 
             AscendingIterator(const AscendingIterator& copy_container);
+            AscendingIterator() = delete;
             ~AscendingIterator();
 
             AscendingIterator(MagicalContainer& container);
@@ -40,10 +41,16 @@ namespace ariel{
             AscendingIterator& operator++();
             bool operator==(const AscendingIterator& other_iterator) const;
             bool operator!=(const AscendingIterator& other_iterator) const;
+            // Assignment operator
+            AscendingIterator &operator=(const AscendingIterator &other);
 
+            // Move assignment operator
+            AscendingIterator &operator=(AscendingIterator &&other) noexcept;
             AscendingIterator begin() const;
             AscendingIterator end() const;
+            int getCurrentIndex() const;
 
+            MagicalContainer& getContainer() const;
         };
 
         class SideCrossIterator {
@@ -55,6 +62,8 @@ namespace ariel{
         public:
 
             SideCrossIterator(const SideCrossIterator& other_container);
+            SideCrossIterator(const SideCrossIterator&& other_container) noexcept;
+            SideCrossIterator() =delete;
             ~SideCrossIterator();
             SideCrossIterator(MagicalContainer& container);
 
@@ -64,9 +73,16 @@ namespace ariel{
             bool operator!=(const SideCrossIterator& other_iterator) const;
             bool operator>(const SideCrossIterator& other_iterator) const;
             bool operator<(const SideCrossIterator& other_iterator) const;
+            // Assignment operator
+            SideCrossIterator &operator=(const SideCrossIterator &other);
 
+            // Move assignment operator
+            SideCrossIterator &operator=(SideCrossIterator &&other) noexcept;
             SideCrossIterator begin() const;
             SideCrossIterator end() const;
+            MagicalContainer& getContainer() const;
+            int getCurrentIndex() const;
+
 
         };
 
@@ -84,14 +100,21 @@ namespace ariel{
             ~PrimeIterator();
 
             PrimeIterator(MagicalContainer& container);
-
+            PrimeIterator(PrimeIterator &&other) noexcept;
             int& operator*() const;
             PrimeIterator& operator++();
             bool operator==(const PrimeIterator& other_iterator) const;
             bool operator!=(const PrimeIterator& other_iterator) const;
             bool operator>(const PrimeIterator& other_iterator) const;
             bool operator<(const PrimeIterator& other_iterator) const;
+            // Assignment operator
+            PrimeIterator &operator=(const PrimeIterator &other);
+            MagicalContainer& getContainer() const;
+            int getCurrentIndex() const;
 
+
+            // Move assignment operator
+            PrimeIterator &operator=(PrimeIterator &&other) noexcept;
             PrimeIterator begin() const;
             PrimeIterator end() const;
 
