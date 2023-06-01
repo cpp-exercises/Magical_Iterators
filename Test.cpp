@@ -2,129 +2,117 @@
 // Created by renana on 5/30/23.
 //
 #include "doctest.h"
-#include <iostream>
-#include <vector>
-#include <algorithm>
-
-#include "MagicalContainer.hpp"
-
+#include "sources/MagicalContainer.hpp"
 using namespace ariel;
+using namespace std;
 
-TEST_CASE("MagicalContainer PrimeIterator") {
+TEST_SUITE("MagicalContainer PrimeIterator") {
 
-    // Create a MagicalContainer and add some elements
-    MagicalContainer container;
-    container.addElement(17);
-    container.addElement(2);
-    container.addElement(25);
-    container.addElement(9);
-    container.addElement(3);
+MagicalContainer container;
+container.addElement(17);
+container.addElement(2);
+container.addElement(25);
+container.addElement(9);
+container.addElement(3);
 
-    SECTION("Prime numbers") {
-        // Use PrimeIterator to iterate over prime numbers only
-        MagicalContainer::PrimeIterator primeIter(container);
+TEST_CASE("Prime numbers") {
+MagicalContainer::PrimeIterator primeIter(container);
 
-        std::vector<int> primes = {2, 3, 17};
-        int index = 0;
-        for (auto it = primeIter.begin(); it != primeIter.end(); ++it) {
-            CHECK(*it == primes[index]);
-            ++index;
-        }
-    }
-
-    SECTION("Remove non-prime number") {
-    // Remove a non-prime number and check if it's skipped in PrimeIterator
-    container.removeElement(9);
-
-    MagicalContainer::PrimeIterator primeIter(container);
-
-    std::vector<int> primes = {2, 3, 17};
-    int index = 0;
-    for (auto it = primeIter.begin(); it != primeIter.end(); ++it) {
-        CHECK(*it == primes[index]);
-        ++index;
-        }
-    }
-
-    SECTION("Empty container") {
-        // Create an empty container and check if PrimeIterator handles it correctly
-        MagicalContainer emptyContainer;
-
-        MagicalContainer::PrimeIterator primeIter(emptyContainer);
-        CHECK(primeIter.begin() == primeIter.end());
-    }
+std::vector<int> primes = {2, 3, 17};
+std::vector<int>::size_type index = 0;
+for (auto it = primeIter.begin(); it != primeIter.end(); ++it) {
+CHECK(*it == primes[index]);
+++index;
+}
 }
 
-TEST_CASE("MagicalContainer AscendingIterator") {
+TEST_CASE("Remove non-prime number") {
+container.removeElement(9);
 
-    // Create a MagicalContainer and add some elements
-    MagicalContainer container;
-    container.addElement(17);
-    container.addElement(2);
-    container.addElement(25);
-    container.addElement(9);
-    container.addElement(3);
+MagicalContainer::PrimeIterator primeIter(container);
 
-    SECTION("Ascending order") {
-    // Use AscendingIterator to iterate over elements in ascending order
-    MagicalContainer::AscendingIterator ascIter(container);
-
-    std::vector<int> ascending = {2, 3, 9, 17, 25};
-    int index = 0;
-    for (auto it = ascIter.begin(); it != ascIter.end(); ++it) {
-        CHECK(*it == ascending[index]);
-        ++index;
-    }
+std::vector<int> primes = {2, 3, 17};
+std::vector<int>::size_type index = 0;
+for (auto it = primeIter.begin(); it != primeIter.end(); ++it) {
+CHECK(*it == primes[index]);
+++index;
+}
 }
 
-SECTION("Remove element in ascending order") {
-    // Remove an element and check if it's skipped in AscendingIterator
-    container.removeElement(9);
+TEST_CASE("Empty container") {
+MagicalContainer emptyContainer;
 
-    MagicalContainer::AscendingIterator ascIter(container);
+MagicalContainer::PrimeIterator primeIter(emptyContainer);
+CHECK(primeIter.begin() == primeIter.end());
+}
+}
 
-    std::vector<int> ascending = {2, 3, 17, 25};
-    int index = 0;
-    for (auto it = ascIter.begin(); it != ascIter.end(); ++it) {
-        CHECK(*it == ascending[index]);
-        ++index;
-    }
+TEST_SUITE("MagicalContainer AscendingIterator") {
+
+MagicalContainer container;
+container.addElement(17);
+container.addElement(2);
+container.addElement(25);
+container.addElement(9);
+container.addElement(3);
+
+TEST_CASE("Ascending order") {
+MagicalContainer::AscendingIterator ascIter(container);
+
+std::vector<int> ascending = {2, 3, 9, 17, 25};
+std::vector<int>::size_type index = 0;
+for (auto it = ascIter.begin(); it != ascIter.end(); ++it) {
+CHECK(*it == ascending[index]);
+++index;
+}
+}
+
+TEST_CASE("Remove element in ascending order") {
+container.removeElement(9);
+
+MagicalContainer::AscendingIterator ascIter(container);
+
+std::vector<int> ascending = {2, 3, 17, 25};
+std::vector<int>::size_type index = 0;
+for (auto it = ascIter.begin(); it != ascIter.end(); ++it) {
+CHECK(*it == ascending[index]);
+++index;
+}
 }
 
 }
 
-TEST_CASE("MagicalContainer SideCrossIterator") {
-    // Create a MagicalContainer and add some elements
-    MagicalContainer container;
-    container.addElement(17);
-    container.addElement(2);
-    container.addElement(25);
-    container.addElement(9);
-    container.addElement(3);
+TEST_SUITE("MagicalContainer SideCrossIterator") {
 
-    SECTION("Side-cross order") {
-        // Use SideCrossIterator to iterate over elements in a side-cross pattern
-        MagicalContainer::SideCrossIterator sideCrossIter(container);
+MagicalContainer container;
+container.addElement(17);
+container.addElement(2);
+container.addElement(25);
+container.addElement(9);
+container.addElement(3);
 
-        std::vector<int> sideCross = {17, 3, 2, 9, 25};
-        int index = 0;
-        for (auto it = sideCrossIter.begin(); it != sideCrossIter.end(); ++it) {
-            CHECK(*it == sideCross[index]);
-            ++index;
-        }
-    }
+TEST_CASE("Side-cross order") {
+MagicalContainer::SideCrossIterator sideCrossIter(container);
 
-    SECTION("Remove element in side-cross order") {
-        // Remove an element and check if it's skipped in SideCrossIterator
-        container.removeElement(2);
+std::vector<int> sideCross = {17, 3, 2, 9, 25};
+std::vector<int>::size_type index = 0;
+for (auto it = sideCrossIter.begin(); it != sideCrossIter.end(); ++it) {
+CHECK(*it == sideCross[index]);
+++index;
+}
+}
 
-        MagicalContainer::SideCrossIterator sideCrossIter(container);
+TEST_CASE("Remove element in side-cross order") {
+container.removeElement(2);
 
-        std::vector<int> sideCross = {17, 3, 9, 25};
-        int index = 0;
-        for (auto it = sideCrossIter.begin(); it != sideCrossIter.end(); ++it) {
-            CHECK(*it == sideCross[index]);
-            ++index;
-        }
-    }
+MagicalContainer::SideCrossIterator sideCrossIter(container);
+
+std::vector<int> sideCross = {17, 3, 9, 25};
+std::vector<int>::size_type index = 0;
+for (auto it = sideCrossIter.begin(); it != sideCrossIter.end(); ++it) {
+CHECK(*it == sideCross[index]);
+++index;
+}
+}
+
 }
